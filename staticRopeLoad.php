@@ -39,10 +39,10 @@ class ClimbingCase
     }
 }
 
-$climber_weight           = 80;     //example climber weight
-$original_rope_length     = 50;     //example of rope length used
+$climber_weight           = 80;     //example climber weight [kg]
+$original_rope_length     = 50;     //example of rope length used [m]
 $rope_elasticity_constant = 115;    //Modulus of elasticity E [daN / mm2] - example for polyamide rope
-$rope_cross_section       = 12;     //rope diameter
+$rope_cross_section       = 12;     //rope diameter [mm]
 
 $myClimbingCase = new ClimbingCase(
     $climber_weight,
