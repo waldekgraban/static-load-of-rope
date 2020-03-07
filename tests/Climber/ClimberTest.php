@@ -2,22 +2,31 @@
 
 namespace Waldekgraban\StatcRopeLoad\Tests\Unit;
 
-use Waldekgraban\StatcRopeLoad\Tests\TestCase;
 use Waldekgraban\StatcRopeLoad\Climber\Climber;
+use Waldekgraban\StatcRopeLoad\Tests\TestCase;
 
 class ClimberTest extends TestCase
 {
+    protected $climber;
+
+    protected function setUp(): void
+    {
+        $climberWeigth = 80;
+        $this->climber = new Climber($climberWeigth);
+    }
+
     public function testCanInitializeByConstructor()
     {
-        $climber = new Climber(80);
-
-        $this->assertInstanceOf(Climber::class, $climber);
+        $this->assertInstanceOf(Climber::class, $this->climber);
     }
 
     public function testClimbersWeightAreNumbers()
     {
-        $testWeight = new Climber(80);
+        $this->assertIsInt($this->climber->getWeight());
+    }
 
-        $this->assertIsInt($testWeight->getWeight());
+    protected function tearDown(): void
+    {
+        unset($this->climber);
     }
 }
