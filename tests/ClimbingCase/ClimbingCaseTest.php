@@ -7,37 +7,30 @@ use Waldekgraban\StatcRopeLoad\Tests\TestCase;
 
 class PointTest extends TestCase
 {
+    protected $climbingCase;
+
+    protected function setUp(): void
+    {
+        $climberWeight          = 80;
+        $originalRopeLength     = 50;
+        $ropeElasticityConstant = 115;
+        $ropeCrossSection       = 12;
+
+        $this->climbingCase = new ClimbingCase($climberWeight, $originalRopeLength, $ropeElasticityConstant, $ropeCrossSection);
+    }
+
     public function testCanInitializeByConstructor()
     {
-        $climber_weight           = 80;
-        $original_rope_length     = 50;
-        $rope_elasticity_constant = 115;
-        $rope_cross_section       = 12;
-
-        $testClimbingCase = new ClimbingCase(
-            $climber_weight,
-            $original_rope_length,
-            $rope_elasticity_constant,
-            $rope_cross_section
-        );
-
-        $this->assertInstanceOf(ClimbingCase::class, $testClimbingCase);
+        $this->assertInstanceOf(ClimbingCase::class, $this->climbingCase);
     }
 
     public function testStaticRopeLoadIsNumbers()
     {
-        $climber_weight           = 80;
-        $original_rope_length     = 50;
-        $rope_elasticity_constant = 115;
-        $rope_cross_section       = 12;
+        $this->assertIsFloat($this->climbingCase->getStaticRopeLoad());
+    }
 
-        $testClimbingCase = new ClimbingCase(
-            $climber_weight,
-            $original_rope_length,
-            $rope_elasticity_constant,
-            $rope_cross_section
-        );
-
-        $this->assertIsFloat($testClimbingCase->getStaticRopeLoad());
+    protected function tearDown(): void
+    {
+        unset($this->climbingCase);
     }
 }
