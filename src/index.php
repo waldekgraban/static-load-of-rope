@@ -13,13 +13,15 @@ use Waldekgraban\StatcRopeLoad\Climber\Climber;
 use Waldekgraban\StatcRopeLoad\ClimbingCase\ClimbingCase;
 use Waldekgraban\StatcRopeLoad\Rope\Rope;
 
-$climber_weight           = 80;     //in kg.
-$original_rope_length     = 50;     //example of rope length used [m]
-$rope_elasticity_constant = 115;    //Modulus of elasticity E [daN / mm2] - example for polyamide rope
-$rope_cross_section       = 12;     //rope diameter [mm]
+//example of use
 
-$climber      = new Climber($climber_weight);
-$rope         = new Rope($original_rope_length, $rope_elasticity_constant, $rope_cross_section);
+$climberWeight          = 80;  //in kg.
+$originalRopeLength     = 50;  //example of rope length used [m]
+$ropeElasticityConstant = 115; //Modulus of elasticity E [daN / mm2] - example for polyamide rope
+$ropeCrossSection       = 12;  //rope diameter [mm]
+
+$climber      = new Climber($climberWeight);
+$rope         = new Rope($originalRopeLength, $ropeElasticityConstant, $ropeCrossSection);
 $climbingCase = new ClimbingCase(
     $climber->getWeight(),
     $rope->getOriginalRopeLength(),
