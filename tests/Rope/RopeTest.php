@@ -7,31 +7,39 @@ use Waldekgraban\StatcRopeLoad\Tests\TestCase;
 
 class CalculatorTest extends TestCase
 {
+    protected $rope;
+
+    protected function setUp(): void
+    {
+        $originalRopeLength     = 50;
+        $ropeElasticityConstant = 115;
+        $ropeCrossSection       = 12;
+
+        $this->rope = new Rope($originalRopeLength, $ropeElasticityConstant, $ropeCrossSection);
+    }
+
     public function testCanInitializeByConstructor()
     {
-        $rope = new Rope(80, 50, 115, 12);
-
-        $this->assertInstanceOf(Rope::class, $rope);
+        $this->assertInstanceOf(Rope::class, $this->rope);
     }
 
     public function testRopeOriginalRopeLengthIsNumbers()
     {
-        $rope = new Rope(80, 50, 115, 12);
-
-        $this->assertIsInt($rope->getOriginalRopeLength());
+        $this->assertIsInt($this->rope->getOriginalRopeLength());
     }
 
     public function testRopeElasticityConstantIsNumbers()
     {
-        $rope = new Rope(80, 50, 115, 12);
-
-        $this->assertIsInt($rope->getRopeElasticityConstant());
+        $this->assertIsInt($this->rope->getRopeElasticityConstant());
     }
 
     public function testRopeCrossSectionIsNumbers()
     {
-        $rope = new Rope(80, 50, 115, 12);
+        $this->assertIsInt($this->rope->getRopeCrossSection());
+    }
 
-        $this->assertIsInt($rope->getRopeCrossSection());
+    protected function tearDown(): void
+    {
+        unset($this->rope);
     }
 }
