@@ -9,36 +9,36 @@ namespace Waldekgraban\StatcRopeLoad\ClimbingCase;
 
 class ClimbingCase
 {
-    protected $climber_weight;
-    protected $original_rope_length;
-    protected $rope_elasticity_constant;
-    protected $rope_cross_section;
+    protected $climberWeight;
+    protected $originalRopeLength;
+    protected $ropeElasticityConstant;
+    protected $ropeCrossSection;
 
-    public function __construct($climber_weight, $original_rope_length, $rope_elasticity_constant, $rope_cross_section)
+    public function __construct($climberWeight, $originalRopeLength, $ropeElasticityConstant, $ropeCrossSection)
     {
-        $this->climber_weight           = $climber_weight;
-        $this->rope_cross_section       = $rope_cross_section;
-        $this->original_rope_length     = $original_rope_length;
-        $this->rope_elasticity_constant = $rope_elasticity_constant;
+        $this->climberWeight          = $climberWeight;
+        $this->ropeCrossSection       = $ropeCrossSection;
+        $this->originalRopeLength     = $originalRopeLength;
+        $this->ropeElasticityConstant = $ropeElasticityConstant;
     }
 
     protected function getRopeStiffness()
     {
-        $ropeStiffness = ($this->rope_elasticity_constant * $this->rope_cross_section) / $this->original_rope_length;
+        $ropeStiffness = ($this->ropeElasticityConstant * $this->ropeCrossSection) / $this->originalRopeLength;
 
         return $ropeStiffness;
     }
 
     public function getStaticRopeLoad()
     {
-        $staticRopeLoad = ($this->climber_weight * $this->original_rope_length) / ($this->rope_elasticity_constant * $this->rope_cross_section);
+        $staticRopeLoad = ($this->climberWeight * $this->originalRopeLength) / ($this->ropeElasticityConstant * $this->ropeCrossSection);
 
         return round($staticRopeLoad, 2);
     }
 
     public function getStaticRopeLoad_another_control_method()
     {
-        $staticRopeLoad = $this->climber_weight / $this->getRopeStiffness();
+        $staticRopeLoad = $this->climberWeight / $this->getRopeStiffness();
 
         return round($staticRopeLoad, 2);
     }
